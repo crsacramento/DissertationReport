@@ -1,65 +1,459 @@
-\chapter{Loren Ipsum} \label{ap1:loren}
+\chapter{Appendix} \label{sec:appendix}
 
-Depois das conclusões e antes das referências bibliográficas,
-apresenta-se neste anexo numerado o texto usado para preencher a
-dissertação.
+\begin{table}
+  \begin{tabular}{|c|p{0.8\textwidth}|c|}
+  \hline
+  open & http://www.mcgame.com/ & EMPTY\\ \hline
+  type & //input[@id=query and @name=query and @type=text] & computer\\ \hline
+  clickAndWait & //input[@type=submit] & EMPTY\\ \hline
+  clickAndWait & //a[@class=active and @href=http://www.mcgame.com/de/account/login and contains(text(),'Login')] & EMPTY\\ \hline
+  type & //input[@id=email and @name=email and @type=text] & banana\\ \hline
+  type & //input[@id=password and @name=password and @type=password] & apple\\ \hline
+  click & //input[@id=save\_login and @name=save\_login and @type=checkbox] & EMPTY\\ \hline
+  clickAndWait & //input[@class=btn\_small grey and @name=commit and @type=submit] & EMPTY\\ \hline
+  open & http://www.mcgame.com/ & EMPTY\\ \hline
+  type & //input[@class=alarm\_amount and @name=alarm\_amount and @type=text] & dress\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/game/10210253-watch-dogs-season-pass and contains(text(),'Watch Dogs Season Pass')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/publishers and contains(text(),'Kataloge von Publishern')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/publishers/1104-rokapublish] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de and contains(text(),'Mac Spiele')] & EMPTY\\ \hline
+  type & //input[@id=searchtextbox and @name=field-keywords and @title=Searchen and @type=text]	banana \\ \hline
+  clickAndWait & //input[@class=nav-submit-input and @title=Go and @type=submit] & EMPTY\\ \hline 
+  clickAndWait & //a[@href=http://www.mcgame.com/de/pages/about and contains(text(),'Uber McGame')] & EMPTY\\ \hline
+  select & //select[@id=sort and @class=sort] & label=Price: Low to High \\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/publishers/1045-activision and contains(text(),'Activision')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/help and contains(text(),'Hilfe \& Support')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/publishers/1041-bethesda-softworks and contains(text(),'Bethesda Softworks')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/publishers/1055-capcom and contains(text(),'Capcom')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/mac/core and contains(text(),'Core Games')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/offers and contains(text(),'Angebote')] & EMPTY\\ \hline
+  clickAndWait & //a[@href=http://www.mcgame.com/de/store/game/10470030-hitman-absolution-professional-edition and contains(text(),'Hitman Absolution: Professional Edition')] & EMPTY\\ \hline
+  select & //select[@id=searchDropbox and @class=twotab and @onchange=this.parentForm.submit();] & label=Strategie \\ \hline
+  clickAndWait & //a[@class=active and @href=https://www.mcgame.com/de/account/login and contains(text(),'Login')] & EMPTY\\ \hline
+  clickAndWait & //a[@id=forgot\_password and @href=https://www.mcgame.com/reset/password and contains(text(),'Passwort vergessen?')] & EMPTY\\ \hline
+  \end{tabular}
+\caption{A full history file example.}
+\label{tab:fullexec}
+\end{table}
 
-\section{O que é o \emph{Loren Ipsum}?}
+\lstset{language=XML,caption={An example of a .paradigm file with identified patterns},label=lst:paradigm_model}
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<Paradigm:Model xmi:version="2.0"
+ xmlns:xmi="http://www.omg.org/XMI"
+ xmlns:Paradigm="http://www.example.org/Paradigm"
+ title="http://www.mcgame.com/" >
+  <nodes xsi:type="Paradigm:Init" name="Init" number="0"
+  outgoingLinks="//@relations.0"/>
+  
+  <nodes xsi:type="Paradigm:Login" name="Login" number="1"
+  incomingLinks="//@relations.0" outgoingLinks="//@relations.1">
+    <configurations validity="Invalid" check="StayOnSamePage" >
+     <inputs field="username" value="login"/>
+      <inputs field="password" value="123abc"/>
+    </configurations>
+    <fields name="username" id="//input[@id=email and @name=email
+    and @type=text]"/>
+    <fields name="password" id="//input[@id=password and @name=password
+    and @type=password]"/>
+  </nodes>
 
-\emph{\textbf{Lorem Ipsum}} is simply dummy text of the printing and
-typesetting industry. Lorem Ipsum has been the industry's standard
-dummy text ever since the 1500s, when an unknown printer took a galley
-of type and scrambled it to make a type specimen book. It has survived
-not only five centuries, but also the leap into electronic
-typesetting, remaining essentially unchanged. It was popularised in
-the 1960s with the release of Letraset sheets containing Lorem Ipsum
-passages, and more recently with desktop publishing software like
-Aldus PageMaker including versions of Lorem Ipsum~\citep{kn:Lip08}. 
+  <nodes xsi:type="Paradigm:Call" name="Call" number="1"
+  incomingLinks="//@relations.1" outgoingLinks="//@relations.2">
+    <configurations />
+    <field name="call_0" id="//a[@class=active
+    and @href=http://www.mcgame.com/de/account/login
+    and contains(text(),'Login')]"/>
+  </nodes>
+  
+  <nodes xsi:type="Paradigm:Find" name="Search" number="2"
+  incomingLinks="//@relations.2" outgoingLinks="//@relations.3">
+    <configurations check="NumberOfResults_more_than"
+    result="10" >
+      <inputs field="find_0" value="computer"/>
+    </configurations>
+    <fields name="find_0" id="//input[@id=query and @name=query
+    and @type=text]"/>
+  </nodes>
 
-\section{De onde Vem o Loren?}
+  <nodes xsi:type="Paradigm:Sort" name="Sort" number="3"
+  incomingLinks="//@relations.3" outgoingLinks="//@relations.4">
+    <configurations check="alphabetically" position="">
+      <inputs field="Price" value="100"/>
+    </configurations>
+    <fields name="Price" id="//select[@id=price]"/>
+  </nodes>
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It
-has roots in a piece of classical Latin literature from 45 BC, making
-it over 2000 years old. Richard McClintock, a Latin professor at
-Hampden-Sydney College in Virginia, looked up one of the more obscure
-Latin words, consectetur, from a Lorem Ipsum passage, and going
-through the cites of the word in classical literature, discovered the
-undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-1.10.33 of ``de Finibus Bonorum et Malorum'' (The Extremes of Good and
-Evil) by Cicero, written in 45 BC. This book is a treatise on the
-theory of ethics, very popular during the Renaissance. The first line
-of Lorem Ipsum, ``Lorem ipsum dolor sit amet\ldots'', comes from a line in
-section 1.10.32.
+  <nodes xsi:type="Paradigm:End" name="End" number="4" 2
+  incomingLinks="//@relations.4"/>
 
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-below for those interested. Sections 1.10.32 and 1.10.33 from ``de
-Finibus Bonorum et Malorum'' by Cicero are also reproduced in their
-exact original form, accompanied by English versions from the 1914
-translation by H. Rackham.
+  <relations xsi:type="Paradigm:Sequence" label=">>"
+  source="//@nodes.0" destination="//@nodes.1"/> 6
+  <relations xsi:type="Paradigm:Sequence" label=">>"
+  source="//@nodes.1" destination="//@nodes.2"/> 8
+  <relations xsi:type="Paradigm:Sequence" label=">>"
+  source="//@nodes.2" destination="//@nodes.3"/> 10
+  <relations xsi:type="Paradigm:Sequence" label=">>"
+  source="//@nodes.3" destination="//@nodes.4"/> 12
+</Paradigm:Model>
+\end{lstlisting}
 
-\section{Porque se usa o Loren?}
+\lstset{caption={The result of LogProcessor executing with the content of Table \ref{tab:fullexec} as input. },label=lst:full_exec_proc}
+\begin{lstlisting}
+open 
+typeSearch 
+clickSubmit pageChange
+clickLogin pageChange
+typeEmail 
+typePassword 
+clickLogin 
+clickSubmit pageChange
+open 
+type 
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+typeSearch 
+clickSubmit pageChange
+clickLink pageChange
+selectSort 
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+clickLink pageChange
+selectSubmit 
+clickLogin pageChange
+clickLink pageChange
+\end{lstlisting}
 
-It is a long established fact that a reader will be distracted by the
-readable content of a page when looking at its layout. The point of
-using Lorem Ipsum is that it has a more-or-less normal distribution of
-letters, as opposed to using ``Content here, content here'', making it
-look like readable English. Many desktop publishing packages and web
-page editors now use Lorem Ipsum as their default model text, and a
-search for ``lorem ipsum'' will uncover many web sites still in their
-infancy. Various versions have evolved over the years, sometimes by
-accident, sometimes on purpose (injected humour and the like). 
+\lstset{language=XML,caption={The default configuration loaded of there is no user-specified configuration},label=lst:default_config}
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<conf>
+	<!-- 
+	    actions: number of actions the crawler will execute before stopping
+	    redirections: number of redirects to the home page the crawler will do 
+	       before stopping
+	    politenessDelay: time to wait (in milliseconds) after each action
+	    typedKeywords: list of words to insert in text input elements
+		searchKeywords: regex with keywords that identify search elements
+		sortKeywords: regex with keywords that identify sort elements
+		loginKeywords: regex with keywords that identify login elements
+		generalWordsToExclude: regex with keywords that mark elements that should not be 
+		  accessed
+		menuIdentifiers: list of ids/classes/names that identify menu elements
+		masterIdentifiers: list of ids/classes/names that identify master elements 
+		detailIdentifiers: list of ids/classes/names that identify detail elements 
+		historyFilepath: specify absolute filepath for history file
+		processedHistoryFilepath: specify absolute filepath for processed history file
+		patternsFilepath: specify absolute filepath for PARADIGM model file
+		patternsToFind: list of patterns that the explorer can search for. If "all" 
+		  occurs, there will be no restriction.
+		loginConfiguration: credentials for a correct login in the web app.
+		tokenizerPatterns: patterns for LogProcessor
+		includeChildrenNodesOnInteraction: boolean; on interaction with an input or 
+		  select element, if children elements should be included  in the history file, 
+		  but not interacted with.
+	-->
+	<actions>50</actions>
+	<redirections>5</redirections>
+	<politenessDelay>500</politenessDelay>
+	<includeChildrenNodesOnInteraction>false</includeChildrenNodesOnInteraction>
+	<searchKeywords>(input|select|textarea)(.*(=q|q(ue)?ry|s(ea)?rch|pesq(uisa)?|procura(r)?|busca(dor)?).*)</searchKeywords>
+	<sortKeywords>((input|select|textarea).*sort)</sortKeywords>
+	<loginKeywords>(user(name)?|pass(word)?|e?mail|(sign(ed)?(\\s|_)?(in|out)|log(ged)?(\\s|_)?(in|out)))</loginKeywords>
+	<generalWordsToExclude>(buy|sell|mailto|add(\\s|_)?to(\\s|_)?cart|checkout)</generalWordsToExclude>
+	<typedKeywords>
+        <item>curtains</item>
+        <item>coffee</item>
+        <item>phone</item>
+        <item>shirt</item>
+        <item>computer</item>
+        <item>dress</item>
+        <item>banana</item>
+        <item>sandals</item>
+    </typedKeywords>
+	<menuIdentifiers>
+		<item>nav</item>
+		<item>head</item>
+		<item>menu</item>
+		<item>top</item>
+		<item>head</item>
+		<item>foot</item>
+	</menuIdentifiers>
+	<masterIdentifiers>
+		<item>refine</item>
+		<item>relatedSearches</item>
+		<item>spell</item>
+		<item>category</item>
+		<item>categories</item>
+	</masterIdentifiers>
+	<detailIdentifiers>
+		<item>results</item>
+		<item>searchResults</item>
+		<item>entry</item>
+	</detailIdentifiers>
+	<historyFilepath>history.csv</historyFilepath>
+	<processedHistoryFilepath>history.csv.processed</processedHistoryFilepath>
+	<patternsFilepath>patterns.paradigm</patternsFilepath>
+	<patternsToFind>
+		<!-- item>All</item-->
+		<item>Search</item>
+		<item>Sort</item>
+		<item>MasterDetail</item>
+		<item>Call</item>
+		<item>Input</item>
+		<item>Login</item>
+		<item>Menu</item>
+	</patternsToFind>
+	<!-- loginConfiguration>
+		<username>user-name</username>
+		<password>password</password>
+	</loginConfiguration-->
+	<tokenizerPatterns>
+	    <patternEntry>
+            <name>login</name>
+            <regex>sign(ed)?(\\s|_)?(in|out)|log(ged)?(\\s|_)?(in|out)</regex>
+        </patternEntry>
+		<patternEntry>
+			<name>submit</name>
+			<regex>submit</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>homeLink</name>
+			<regex>(home|main(\\s|_)?page|index|logo)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>imageLink</name>
+			<regex>link(.*)img|img(.*)link</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>nextLink</name>
+			<regex>(link(.*)next|next(.*)link)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>prevLink</name>
+			<regex>(prev(ious)?(.*)link|link(.*)prev(ious)?)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>firstLink</name>
+			<regex>(first(.*)link)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>lastLink</name>
+			<regex>(link(.*)last)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>languageLink</name>
+			<regex>lang</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>buttonLink</name>
+			<regex>href.*(button|btn)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>searchResultLink</name>
+			<regex>search.*result(.*row)?</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>link</name>
+			<regex>link|href</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>option</name>
+			<regex>option</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>username</name>
+			<regex>user(\\s|_)?(name|id)?</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>verifyPassword</name>
+			<regex>verify(\\s|_)?pass(word)?|pass(word)?(\\s|_)?confirm(ation)?</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>password</name>
+			<regex>pass(word)?</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>email</name>
+			<regex>e?mail</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>checkbox</name>
+			<regex>checkbox</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>collapse</name>
+			<regex>collapse</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>firstNameInput</name>
+			<regex>(input|textarea).*first(\\s|_)?name</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>lastNameInput</name>
+			<regex>(input|textarea).*last(\\s|_)?name</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>sort</name>
+			<regex>((input|textarea|select).*sort)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>search</name>
+			<regex>(input|select|textarea)(.*(=q\\s|q(ue)?ry|s(ea)?rch|pesq(uisa)?|procura(r)?|busca(dor)?).*)</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>captcha</name>
+			<regex>captcha</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>auth</name>
+			<regex>auth</regex>
+		</patternEntry>
+		<patternEntry>
+			<name>numberInput</name>
+			<regex>number|price|quantity|qty\\s|zip(\\s|_)?code</regex>
+		</patternEntry>
+		<patternEntry>
+            <name>button</name>
+            <regex>button</regex>
+        </patternEntry>
+		<patternEntry>
+			<name>clear</name>
+			<regex>clear</regex>
+		</patternEntry>
+		<patternEntry>
+            <name>input</name>
+            <regex>\\/\\/(input|textarea).*text.*</regex>
+        </patternEntry>
+	</tokenizerPatterns>
+</conf>
+\end{lstlisting}
 
-\section{Onde se Podem Encontrar Exemplos?}
+\lstset{language=XML,caption={The result of running the approach on Table \ref{tab:fullexec} and Listing \ref{lst:full_exec_proc}.},label=lst:full_pattern}
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<Paradigm:Model xmi:version="2.0"
+ xmlns:xmi="http://www.omg.org/XMI" xmlns:Paradigm="http://www.example.org/Paradigm"
+title="http://www.mcgame.com/" >
+	<nodes xsi:type="Paradigm:Init" name="Init" number="0" outgoingLinks="//@relations.0"/>
+	<nodes xsi:type="Paradigm:Find" name="Find1" number="1" incomingLinks="//@relations.0" outgoingLinks="//@relations.1">
+		<configurations check="NumberOfResults_more_than" Position="1" result="10" >
+			<inputs  field="find_0" value="computer"/>
+		</configurations>
+		<fields name="find_0" id="//input[@id=query and @name=query and @type=text]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call2" number="2" incomingLinks="//@relations.1" outgoingLinks="//@relations.2">
+		<configurations />
+		<field name="call_0" id="//a[@class=active and @href=http://www.mcgame.com/de/account/login and contains(text(),'Login')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Login" name="Login3" number="3" incomingLinks="//@relations.2" outgoingLinks="//@relations.3">
+		<configurations validity="Invalid" check="StayOnSamePage" >
+			<inputs  field="username" value="banana"/>
+			<inputs  field="password" value="apple"/>
+		</configurations>
+		<fields name="username" id="//input[@id=email and @name=email and @type=text]"/>
+		<fields name="password" id="//input[@id=password and @name=password and @type=password]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Input" name="Input4" number="4" incomingLinks="//@relations.3" outgoingLinks="//@relations.4">
+		<configurations value="dress" />
+		<field name="input_0" id="//input[@class=alarm\_amount and @name=alarm\_amount and @type=text]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call5" number="5" incomingLinks="//@relations.4" outgoingLinks="//@relations.5">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/game/10210253-watch-dogs-season-pass and contains(text(),'Watch Dogs Season Pass')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call6" number="6" incomingLinks="//@relations.5" outgoingLinks="//@relations.6">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/publishers and contains(text(),'Kataloge von Publishern')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call7" number="7" incomingLinks="//@relations.6" outgoingLinks="//@relations.7">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/publishers/1104-rokapublish]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call8" number="8" incomingLinks="//@relations.7" outgoingLinks="//@relations.8">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de and contains(text(),'Mac Spiele')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Find" name="Find9" number="9" incomingLinks="//@relations.8" outgoingLinks="//@relations.9">
+		<configurations check="NumberOfResults_more_than" Position="1" result="10" >
+			<inputs  field="find_0" value="banana "/>
+		</configurations>
+		<fields name="find_0" id="//input[@id=searchtextbox and @name=field-keywords and @title=Searchen and @type=text]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call10" number="10" incomingLinks="//@relations.9" outgoingLinks="//@relations.10">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/pages/about and contains(text(),'Uber McGame')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Sort" name="Sort11" number="11" incomingLinks="//@relations.10" outgoingLinks="//@relations.11">
+		<configurations />
+			<inputs  field="sort_0" value="label=Price: Low to High "/>
+		<fields name="sort_0" id="//select[@id=sort and @class=sort]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call12" number="12" incomingLinks="//@relations.11" outgoingLinks="//@relations.12">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/publishers/1045-activision and contains(text(),'Activision')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call13" number="13" incomingLinks="//@relations.12" outgoingLinks="//@relations.13">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/help and contains(text(),'Hilfe \ Support')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call14" number="14" incomingLinks="//@relations.13" outgoingLinks="//@relations.14">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/publishers/1041-bethesda-softworks and contains(text(),'Bethesda Softworks')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call15" number="15" incomingLinks="//@relations.14" outgoingLinks="//@relations.15">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/publishers/1055-capcom and contains(text(),'Capcom')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call16" number="16" incomingLinks="//@relations.15" outgoingLinks="//@relations.16">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/mac/core and contains(text(),'Core Games')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call17" number="17" incomingLinks="//@relations.16" outgoingLinks="//@relations.17">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/offers and contains(text(),'Angebote')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call18" number="18" incomingLinks="//@relations.17" outgoingLinks="//@relations.18">
+		<configurations />
+		<field name="call_0" id="//a[@href=http://www.mcgame.com/de/store/game/10470030-hitman-absolution-professional-edition and contains(text(),'Hitman Absolution: Professional Edition')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call19" number="19" incomingLinks="//@relations.18" outgoingLinks="//@relations.19">
+		<configurations />
+		<field name="call_0" id="//a[@class=active and @href=https://www.mcgame.com/de/account/login and contains(text(),'Login')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:Call" name="Call20" number="20" incomingLinks="//@relations.19" outgoingLinks="//@relations.20">
+		<configurations />
+		<field name="call_0" id="//a[@id=forgot\_password and @href=https://www.mcgame.com/reset/password and contains(text(),'Passwort vergessen?')]"/>
+	</nodes>
+	<nodes xsi:type="Paradigm:End" name="End" number="21" incomingLinks="//@relations.20"/>
 
-There are many variations of passages of Lorem Ipsum available, but
-the majority have suffered alteration in some form, by injected
-humour, or randomised words which don't look even slightly
-believable. If you are going to use a passage of Lorem Ipsum, you need
-to be sure there isn't anything embarrassing hidden in the middle of
-text. All the Lorem Ipsum generators on the Internet tend to repeat
-predefined chunks as necessary, making this the first true generator
-on the Internet. It uses a dictionary of over 200 Latin words,
-combined with a handful of model sentence structures, to generate
-Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is
-therefore always free from repetition, injected humour, or
-non-characteristic words etc. 
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.0" destination="//@nodes.1"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.1" destination="//@nodes.2"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.2" destination="//@nodes.3"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.3" destination="//@nodes.4"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.4" destination="//@nodes.5"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.5" destination="//@nodes.6"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.6" destination="//@nodes.7"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.7" destination="//@nodes.8"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.8" destination="//@nodes.9"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.9" destination="//@nodes.10"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.10" destination="//@nodes.11"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.11" destination="//@nodes.12"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.12" destination="//@nodes.13"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.13" destination="//@nodes.14"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.14" destination="//@nodes.15"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.15" destination="//@nodes.16"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.16" destination="//@nodes.17"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.17" destination="//@nodes.18"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.18" destination="//@nodes.19"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.19" destination="//@nodes.20"/>
+	<relations xsi:type="Paradigm:Sequence" label=">>" source="//@nodes.20" destination="//@nodes.21"/>
+</Paradigm:Model>
+
+\end{lstlisting}

@@ -17,6 +17,15 @@
 
 \documentclass[11pt,a4paper,twoside,openright]{report}
 
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{listings}
+\usepackage{import}
+\usepackage{algorithm2e}
+\usepackage{tabularx}
+\usepackage[epsilon]{backnaur}
+\usepackage{newfloat}
+
 %% For iso-8859-1 (latin1), comment next line and uncomment the second line
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc}
@@ -25,8 +34,8 @@
 %% English version
 
 %% MIEIC options
-\usepackage[mieic]{feupteses}
-%\usepackage[mieic,juri]{feupteses}
+%\usepackage[mieic]{feupteses}
+\usepackage[mieic,juri]{feupteses}
 %\usepackage[mieic,final]{feupteses}
 %\usepackage[mieic,final,onpaper]{feupteses}
 
@@ -42,6 +51,20 @@
 %% Include color package
 \usepackage{color}
 \definecolor{cloudwhite}{cmyk}{0,0,0,0.025}
+
+% declare the floating environment {Grammar}
+% this will also define \listofGrammars:
+\DeclareFloatingEnvironment[
+  % the file extension for the file used to create the list:
+  fileext   = logr,% don't use log here!
+  % the heading for the list:
+  listname  = {List of Grammars},
+  % the name used in captions:
+  name      = Grammar,
+  % the default floating parameters if the environment is used
+  % without optional argument:
+  placement = htp
+]{Grammar}
 
 %% Include source-code listings package
 \usepackage{listings}
@@ -89,7 +112,7 @@
 %%----------------------------------------
 %% Information about the work
 %%----------------------------------------
-\title{Engenharia Reversa de Padrões de Interação}
+\title{Reverse Engineering of Interaction Patterns}
 \author{Clara Sacramento}
 
 %% Uncomment next line for date of submission
@@ -135,6 +158,9 @@
   \cleardoublepage
   \pdfbookmark[0]{List of Tables}{tables}
   \listoftables
+  \cleardoublepage
+  \pdfbookmark[0]{List of Algorithms}{algorithms}
+  \listofalgorithms
   \include{abbrevs_en}  % the list of abbreviations used
 \end{Prolog}
 
@@ -145,10 +171,10 @@
 
 %% TIP: use a separate file for each chapter
 \include{intro} 
-\include{chapter2}
-\include{chapter3}
-\include{chapter4}
-\include{chapter5} 
+\include{background}
+\include{approach}
+\include{validation}
+\include{conclusion} 
 
 %%----------------------------------------
 %% Final materials

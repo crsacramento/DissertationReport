@@ -1,0 +1,22 @@
+\chapter{Conclusions} \label{chap:conclusion}
+
+\section*{}
+
+%Deve ser apresentado um resumo do trabalho realizado e apreciada a satisfação dos objetivos do trabalho, uma lista de contribuições principais do trabalho e as direções para trabalho futuro.
+
+%A escrita deste capítulo deve ser orientada para a total compreensão do trabalho, tendo em atenção que, depois de ler o Resumo e a Introdução, a maioria dos leitores passará à leitura deste capítulo de conclusões e recomendações para trabalho futuro.
+
+This dissertation presented a dynamic reverse engineering approach to identify UI Patterns within existing Web applications, by extracting information from an execution trace and afterwards inferring the existing UI Patterns. Then the tool identifies the corresponding UI Test Patterns to test the identified UI Patterns and gathers some information for their configurations. The result is then exported into a PARADIGM model to be completed in modeling environment, PARADIGM-ME. Afterwards, the model can be used to generate test cases that are executed on the Web application under test. This reverse engineering tool is used in the context of the Pattern Based GUI Testing project that aims to build a model based testing environment to be used in companies. 
+
+The steps followed by the approach have been explained in detail, including the components responsible for the automatic exploration of the Web application, the lexical and syntactical analysis of execution trace files, pattern discovery, and the production of the final PARADIGM model.
+
+\section{Goal Satisfaction}
+
+The evaluation of the overall approach was conducted in several popular Web applications. The result was quite satisfactory, as the reverse engineering tool found most of the occurrences of UI patterns present in each application as well as their exact location (in which page they were found), and was able to translate those occurrences into valid PARADIGM files, useful to testers. The tool was able to improve the previous reverse engineering tool by increasing the true positive percentage, lowering the false positive percentage, and broadening the range of identifiable patterns, while at the same time negating the need for user interaction in the process of identifying UI Test Patterns from a web aplication, and thus answer the research questions.
+
+\section{Future Work}
+Despite the satisfactory results obtained, the approach can still be improved. The tool does not handle dynamic pages very well. As so, the features planned for future versions of the reverse engineering tool should include methods for better Javascript handling. 
+
+Additionally, the evaluation done to the tool has shown that, while the pattern inferring precision has improved, the number of discovered patterns has lessened. Future work should include experimenting with different exploration algorithms, to compare their efectiveness in finding the existing UI patterns in web applications. Another way to improve pattern discovery could mean changing the exploration method from a purely random one to a random-like breadth exploration, or any other method to explore the Web application fully instead of stopping at a set number of actions.
+
+

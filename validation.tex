@@ -1,0 +1,83 @@
+\chapter{Case Study}\label{chap:validation}
+
+In this chapter we introduce a case study, done to validate the developed work and assess its efficacy and compliance of the dissertation goals. 
+
+\section{Evaluation}\label{sec:eval}
+
+\subsection{Research Questions}
+
+In order to evaluate the developed reverse engineering approach, some experiments were performed. They aimed to answer the following research questions:
+
+\begin{itemize}
+  \item[R1)] Is it possible to infer automatically UI Patterns from a Web application?\\
+  \item[R2)] Is it possible to improve the results provided by the previous RE tool?\\
+\end{itemize}
+
+\subsection{Evaluation Results}
+
+The RE tool was initially tested iteratively over a set of Web applications, with the goal of fine-tuning the inferring grammars used to discover UI Patterns.
+
+Afterwards, the RE tool was used to detect UI Patterns in several widely used Web applications. This time, the purpose was to evaluate the RE tool, i.e., to determine which UI pattern occurrences the tool was able to detect in each application execution trace (ET), and compare them to the list of known to exist patterns.
+
+Five applications were chosen from the most popular websites
+\footnote{according to: \protect\url{http://en.wikipedia.org/wiki/List_of_most_popular_websites}}: Amazon, Wikipedia, Ebay, Youtube, Facebook and Yahoo.
+
+The results of the experiments are presented in table \ref{tab:eval_curr}. This table shows the number of instances of each UI pattern that exist in the execution traces, the ones that the tools correctly found and the ones that the tools mistakenly found (false positives). In the case of the previous tool, the Menu and Call patterns weren't included because the tool doesn't identify those patterns.
+
+\begin{table}[!htb]
+\centering
+\resizebox{0.9\textwidth}{!}{
+  \begin{tabular}{| c | c | c | c | c |}
+  \hline \multicolumn{5}{|c|}{\textbf{Previous Tool}} \\ \hline
+     \textbf{Pattern} & \textbf{Present} & \textbf{True} & \textbf{False} & \textbf{False} \\
+       & \textbf{in ET} & \textbf{Positive} & \textbf{Negative} & \textbf{Positive} \\ \hline
+     Login & 4 & 3 & 1 & 0 \\
+     Find & 15 & 9 & 6 & 0 \\
+     Sort &  1 & 1 & 0 & 306 \\
+     Input & 29 & 29 & 0 & 6 \\
+MasterDetail & 58 & 58 & 0 & 22 \\ \hline
+     \textbf{Total} & \textbf{107 (100\%)} & \textbf{100 (93.47\%)} & \textbf{29 (6.54\%)} & \textbf{328 (306.54\%)} \\ \hline
+    \hline \multicolumn{5}{|c|}{\textbf{Current Tool}} \\ \hline
+     \textbf{Pattern} & \textbf{Present} & \textbf{True} & \textbf{False} & \textbf{False} \\
+       & \textbf{in ET} & \textbf{Positive} & \textbf{Negative} & \textbf{Positive} \\ \hline
+     Login & 4 & 4 & 0 & 0 \\
+     Find & 15 & 13 & 2 & 0 \\
+     Sort & 1 & 1 & 0 & 0 \\
+     Input & 29 & 28 & 1 & 0 \\
+     Call & 249 & 235 & 14 & 0 \\ 
+     Menu & 212 & 216 & 0 & 4 \\
+MasterDetail & 58 & 46 & 12 & 0 \\ \hline
+     \textbf{Total} & \textbf{568 (100\%)} & \textbf{543 (95.59\%)} & \textbf{29 (5.1\%)} & \textbf{4 (0.7\%)} \\ \hline
+  \end{tabular}
+}
+\caption{Evaluation set results from the previous and current tool, given the same input.}
+\label{tab:eval_curr}
+\end{table}
+
+As we can see in Table \ref{tab:eval_curr}, the current reverse engineering tool found few false positives, most related to the Menu UI Pattern. In addition it is worth to mention that the tool found 95.59\% of the  patterns present in the automatically explored execution traces. Given the same input, the current tool improved all of the statistics, and specially the rate of false positives.
+
+However, the case study does not mention how many patterns were present in the web applications that were not visited, which we have not verified. Only one path produced by the application was considered for each Web application, and all the paths were traversed using the standard configuration, excluding any login credentials included (the contents of the standard configuration can be seen in Listing \ref{lst:default_config}, in Section \ref{sec:appendix}).
+
+\begin{table}[!htb]
+\centering
+\resizebox{0.7\textwidth}{!}{
+  \begin{tabular}{| c | c | c | c |}
+  \hline
+    \textbf{Pattern} & \textbf{Present} & \textbf{Correctly} & \textbf{False}\\
+       & \textbf{in ET} & \textbf{Found} & \textbf{Positives} \\ \hline
+     Login & 9 & 6 & 0 \\
+     Find & 24 & 21 & 0 \\
+     Sort & 11 & 4 & 0 \\
+     Input & 28 & 26 & 3 \\
+MasterDetail & 24 & 9 & 9 \\ \hline
+     \textbf{Total} & \textbf{99} & \textbf{67 (67.7\%)} & \textbf{12} \\ \hline
+  \end{tabular}
+}
+\caption{Evaluation set results from the previous tool, taken from \cite{nabuco2014inferring}.}
+\label{tab:eval_article}
+\end{table}
+
+When comparing the evaluation set results with those proposed in \cite{nabuco2014inferring} (which can be seen in Table \ref{tab:eval_article}) we see that the current tool finds less patterns than the previous tool. This can be explained: the previous tool had its exploration guided by a human user, specifically a tester, which knew how to guide the exploration; the current tool is guided by an algorithm, that picks a random element for each successive action. When taking this into account, it is natural that an automatic tool finds less patterns than one which it is being guided by an expert. Even so, what the current tool lacks in terms of discovered patterns, it makes up in its percentage of correctly found patterns, which is better than its predecessor's. 
+
+\section{Chapter Conclusions}
+In this chapter we presented a case study that showcased the results the developed approach produces. In comparison to the previous tool, we can see that the inferring precision has improved (the true positive and false positive percentages have increased and lowered, respectively), and the number of discovered patterns has lowered slightly for the majority of the identifiable patterns, with a possible reason being detailed.
