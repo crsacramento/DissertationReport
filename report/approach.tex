@@ -23,35 +23,41 @@ The PBGT supporting tool has main five components:
 
 The architecture and workflow of the project is shown in Fig. \ref{fig:pbgt}.\\
 
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{pbgt}
 \caption{An overview of the PBGT project.}
 \label{fig:pbgt}
 \end{figure}
+\end{center}
 
 \subsection{PARADIGM DSL}\label{sec:dsl}
 %falar doc conetores e, do init e do end, e falar também dos elementos estruturais: Form e Group
 
 PARADIGM is a DSL to be used in the domain of PBGT. The goal of the language is to gather applicable domain abstractions (e.g., UI test patterns), allow specifying relations between them and also provide a way to structure the models in different levels of abstraction to cope with complexity. PARADIGM's meta-model is illustrated in Figure \ref{fig:dsl}.\\
 
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{dsl}
 \caption{PARADIGM DSL Meta-model.}
 \label{fig:dsl}
 \end{figure}
+\end{center}
 
 The PARADIGM language is comprised by elements and connectors \cite{moreira2013pattern}. There are four types of elements: \textit{Init} (to mark the beginning of a model), \textit{End} (to mark the termination of a model), \textit{Structural} (to structure the models in different levels of abstraction), and \textit{Behavioral} (UI Test Patterns describing the testing goals).\\
 
 As models become larger, coping with their growing complexity forces the use of structuring techniques such as different hierarchical levels that allow use one entire model \textbf{A} inside another model \textbf{B} abstracting the details of \textbf{A} when within \textbf{B}. Structuring techniques are common in programming languages like C and Java, with constructs such as modules and classes. \textit{Form} is a structural element that may be used for that purpose. A \textit{Form} is a model (or sub-model) with an \textit{Init} and an \textit{End} elements. \textit{Group} is also a structural element but it does not have \textit{Init} and \textit{End} and, moreover, all elements inside the \textit{Group} are executed in an arbitrary order.\\
 
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.5\textwidth]{dsl1}
 \caption{PARADIGM syntax.}
 \label{fig:dsl1}
 \end{figure}
+\end{center}
 
 PARADIGM elements and connectors are described by: (i) an icon/figure to represent the element graphically and (ii) a short label to name the element. The overall syntax of the DSL is illustrated in Figure \ref{fig:dsl1}. Additionally, elements within a model have a number to identify them, and optional elements have a ``op" label next to its icon/figure.\\
 
@@ -67,11 +73,12 @@ A UI Test Pattern defines a test strategy to test a specific UI pattern, which i
 
 The UI Patterns defined in the PARADIGM language are:
 \begin{itemize}
-\item \textbf{Login}: This pattern is commonly found in Web applications, especially in the ones that restrict access to functionalities or data. Usually consists of two input fields (a normal input box for email or username, and a cyphered text for the password) and a submit button, with optionally a ``remember me'' checkbox. The authentication process has two possible outcomes: valid and invalid. Upon authentication failure a message may be shown. 
-\item \textbf{Find}: This pattern consists of one or more input fields, where the user inserts keywords to search, and a submit button to start the search. The search may be submitted via a submit button, or dynamically upon text insertion. When the search is successful, the website shows a list of results; upon failure, an error message may be shown.
-\item \textbf{Sort}: This pattern sorts a list of data by a common attribute (e.g., price, name, relevance, etc.) according to a defined criteria (ascending or descending, alphabetically, etc.).
-\item \textbf{Master Detail}: This pattern is present in a web page when selecting an element from a set (called \textit{master}) results in filtering/updating another related set (called \textit{detail}) accordingly. For example, clicking on a checkbox associated to a brand may include (or exclude) products of that brand in a product search result list. Generally the only elements changed are the elements belonging to the \textit{detail} set.
-\item \textbf{Call}: This pattern is any kind of element where a click triggers some procedure that may result in a change of page.
+\item[] \textbf{Login}: This pattern is commonly found in Web applications, especially in the ones that restrict access to functionalities or data. Usually consists of two input fields (a normal input box for email or username, and a cyphered text for the password) and a submit button, with optionally a ``remember me'' checkbox. The authentication process has two possible outcomes: valid and invalid. Upon authentication failure a message may be shown. 
+\item[] \textbf{Find}: This pattern consists of one or more input fields, where the user inserts keywords to search, and a submit button to start the search. The search may be submitted via a submit button, or dynamically upon text insertion. When the search is successful, the website shows a list of results; upon failure, an error message may be shown.
+\item[] \textbf{Sort}: This pattern sorts a list of data by a common attribute (e.g., price, name, relevance, etc.) according to a defined criteria (ascending or descending, alphabetically, etc.).
+\item[] \textbf{Master Detail}: This pattern is present in a web page when selecting an element from a set (called \textit{master}) results in filtering/updating another related set (called \textit{detail}) accordingly. For example, clicking on a checkbox associated to a brand may include (or exclude) products of that brand in a product search result list. Generally the only elements changed are the elements belonging to the \textit{detail} set.
+\item[] \textbf{Call}: This pattern is any kind of element where a click triggers some procedure that may result in a change of page.
+\item[] \textbf{Input}: This pattern is any kind of element in which text can be inserted.
 \end{itemize}
 
 \subsection{Produced Models}
@@ -142,6 +149,7 @@ This approach was evaluated on several worldwide used Web applications and the r
 
 The information saved from a user interaction was the source code and URLs of the visited pages, and the interaction's execution trace. An execution trace is the sequence of user actions executed during the interaction with a software system, such as clicks, text inputs and also some information of the system state (e.g., the information that is being displayed). An example of an execution trace file used by the tool can be seen in Table \ref{tab:exec}.\\
 
+\begin{center}
 \begin{table}[!htb]
 \resizebox{0.9\textwidth}{!}{
   \begin{tabular}{| c | c | c |}
@@ -169,27 +177,29 @@ The information saved from a user interaction was the source code and URLs of th
 \caption{Abbreviated example of an execution trace file.}
 \label{tab:exec}
 \end{table}
+\end{center}
 
 The previous reverse engineering approach identified the \textit{Find}, \textit{Login}, \textit{Sort}, \textit{Input} and \textit{MasterDetail} patterns, and produced a high number of false positives \cite{nabuco2013inferring}. Additionally, and as already mentioned, the exploration process was done by saving the user interaction with the Web application under test, requiring human interaction to identify patterns. The results were dependent on the execution traces followed by the tester. \\
 
 \subsection{Current Tool}
 
-The work described in this dissertation is a completely new tool, unrelated to the previous tool, but which has the same primary aim as the previous tool (to identify UI patterns in the Application Under Test (AUT)), only with other goals. The first is to remove the need for user interaction with the AUT to identify patterns, by providing a reverse engineering process to explore automatically the web application under analysis. The second is to refine and improve the pattern inferring process, and lower or eliminate completely the percentage of false positives. The third is to identify more patterns than the previous tool (including patterns that are going to be included in latter versions of the PARADIGM DSL, like the Menu pattern).\\
+The work described in this dissertation is a completely new tool, unrelated to the previous tool, but which has the same primary aim as the previous tool (to identify UI patterns in the Application Under Test (AUT)), only with other goals. The first is to remove the need for user interaction with the AUT to identify patterns, by providing a reverse engineering process to explore automatically the web application under analysis. The second is to refine and improve the pattern inferring process, and lower or eliminate completely the percentage of false positives. The third is to identify more patterns than the previous tool (including patterns that are going to be included in latter versions of the PARADIGM DSL, like the Menu pattern). The architecture of the tool is seen in Figure \ref{fig:retool}.
 
-The architecture of the tool is seen in Figure \ref{fig:retool}.
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{retool}
 \caption{The architecture of the approach.}
 \label{fig:retool}
 \end{figure}
+\end{center}
 
 The approach can be divided into three parts: \textbf{WebsiteExplorer}, \textbf{LogProcessor}, and \textbf{PatternInferrer}.
 
 \textbf{WebsiteExplorer} loads user configurations (more details on Section \ref{sec:conf}), interacts automatically with the AUT and produces an execution trace file with the actions taken (see Table \ref{tab:exec} for an example). \textbf{LogProcessor} is a text parser. It analyzes the previous file, parses each line, searches for important keywords and uses them to identify the action contained in the line, and produces an updated execution trace file (see Table \ref{tab:exec1} for an example). Finally, \textbf{PatternInferrer} analyzes the updated execution file, identifies the existent patterns, their location in the website and any existing parameters, and produces an XML file with the results. The patterns identifiable by this tool are all of those defined in the PARADIGM language, plus the \textit{Menu} UI pattern, which is going to be included in the PARADIGM DSL in the future. \\
 
 \subsubsection{AUT Exploration (WebsiteExplorer)}\label{sec:inter}
-The interaction process is described in a simplified manner in Algorithm \ref{alg:seeker}.
+The interaction process is described in a simplified manner in Algorithm \ref{alg:seeker}. The first thing the algorithm does is load the user-defined configurations file (if it exists). The algorithm itself is limited by two variables: \textit{number\_of\_actions} and \textit{number\_of\_redirections}. When any of these variables reaches its respective limit, the exploration process ends. The algorithm searches for the patterns allowed by the configuration (which can be all of them, or a user-defined subset), and for each interaction  it sequentially executes the following actions: search for valid elements that have not been visited yet and store them in a list; choose a random element to visit (if the previous list is not empty); visit the element (the method used to visit the element depends on the type of element and the pattern it belongs to); mark the element as visited; write the action taken to the execution trace file; increment the relevant counters; and begin a new iteration in the resulting page. If at any time the list of valid explorable elements is empty, it means the current path has been fully explored, and the algorithm returns to the base URL to try another path.
 
 \begin{algorithm}
   %\SetLine
@@ -388,12 +398,14 @@ This component is a syntactical analyzer, that takes as input the extended execu
 
 If during the process the tool detects the same UI Pattern instance several times, the tool is capable of ignoring the repetitions. Its reasoning is explained in Figure \ref{fig:inferrer}.\\
 
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{Global_State_Machine.pdf}
 \caption{The inferrer's reasoning algorithm, expressed in a finite state machine.}
 \label{fig:inferrer}
 \end{figure}
+\end{center}
 
 For simplicity's sake, only the valid paths are shown in the figure (Fig. \ref{fig:inferrer}). All patterns except \textit{Login} can be valid even in the absence of a form submit action; this is done to account for dynamic submission via Javascript. In the case of the Login pattern, there can only be one password and one username or email record; this is done to distinguish login forms from register forms and password/email change forms.\\
 
@@ -438,12 +450,14 @@ Each $<$\textit{nodes}$>$ tag has two types of children: $<$\textit{configuratio
 
 A simplified example of a generated model can be seen in Listing \ref{lst:paradigm_model}, in the Appendix chapter (Section \ref{sec:appendix}), and the corresponding graphic model, generated via PARADIGM-ME, can be seen in Figure \ref{fig:pbgt-me}.
 
+\begin{center}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\textwidth]{pbgt-me.png}
 \caption{A simplified example of a generated model.}
 \label{fig:pbgt-me}
 \end{figure}
+\end{center}
 
 \section{Chapter Conclusions}
 In this chapter we gave a brief overview of PGBT, explained in detail the previous and current tool, to better highlight their differences and explain their functioning. The previous tool requires user interaction to explore a Web application, analyzes the execution trace file, HTML source and URLs  of all pages visited, and infers patterns through a set of heuristic rules; the current tool is fully automatic, requires only the execution trace file, and infers patterns through syntactical analysis of a previously tokenized execution trace file.
